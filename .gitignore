@@ -1,0 +1,20 @@
+# macOS / Python
+.DS_Store
+__pycache__/
+*.pyc
+
+# HPC run state and logs
+run_tag.txt
+*.out
+
+# HPC products placed under results/ (not part of the repository)
+results/
+
+# Regenerated outputs
+figures/out/
+tables/out/
+association/design*.tsv
+association/run_*.tsv
+association/host_prep_*.tsv
+association/host_prep_*.pdf
+association/treat_sens_*.tsv

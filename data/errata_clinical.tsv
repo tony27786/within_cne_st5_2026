@@ -1,0 +1,3 @@
+errata_id	table	key_field	key_value	field	archived_value	corrected_value	basis
+E001	admissions	admission_id	ADM051	blood_crag_result		positive	Original report shows a qualitative positive blood CrAg without a titre; omitted in the cleaned table
+E002	isolates	sample	Cn174	sampling_date	2018-06-02	2018-06-01	Original laboratory report (Cryptococcus neoformans, drainage fluid; sampled 2018-06-01); the isolate list had 2018-06-02
