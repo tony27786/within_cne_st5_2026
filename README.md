@@ -97,6 +97,10 @@ done
 - Raw sequencing reads are deposited under `<repository and accession number>`.
 - De-identified clinical and isolate tables (with personal identifiers removed and admission numbers replaced by anonymous codes `ADM001`–`ADM194`) are provided in `data/`.
 
+## **Acknowledgments**
+
+This workflow relies on open-source bioinformatics tools (including `fastp`, `bwa-mem2`, `samtools`, `GATK`, `bcftools`, `bedtools`, `mosdepth`, `snp-dists`, and `IQ-TREE`) and the R/Python scientific ecosystems. We sincerely thank their authors and maintainers.
+
 ## Citation
 
 `<Authors, Title, Journal, Year, DOI>`
