@@ -51,18 +51,10 @@ ln -s /path/to/g0_<g0_run_tag> results/g0
 ln -s /path/to/g1_<g1_run_tag> results/g1
 ```
 
-If reproducing `figures/figS_misscheck.R` and `tables/table2.R`, generate the two auxiliary files under `results/misscheck/`:
+If reproducing `tables/table2.R`, generate the Cn13 allele-depth file under `results/misscheck/`:
 
 ```bash
-mkdir -p results/misscheck/complete
-awk -F'\t' 'BEGIN{OFS="\t"} NR>1 && $3=="iii" && $4!=0 {$3="iii_hasN"} {print}' \
-  results/g1/03_l1/L1.columns.tsv > results/misscheck/L1.columns.complete.tsv
-python3 hpc_g1_phylogeny/pca_kin.py \
-  --aln results/g1/03_l1/L1.aln.fasta --columns results/misscheck/L1.columns.complete.tsv \
-  --usable-stats results/g1/01_prep/sets/main/stats.tsv --qc-gate results/g0/07_qc_gate/qc_gate.tsv \
-  --analyzable-bp "$(awk '{s+=$3-$2} END{print s+0}' results/g0/07_qc_gate/analyzable_union.bed)" \
-  --out-dir results/misscheck/complete
-
+mkdir -p results/misscheck
 bcftools query -s Cn14,Cn95,Cn211,Cn13 -f '%CHROM\t%POS[\t%SAMPLE|%GT|%AD]\n' \
   results/g0/06_filter/main/st5_joint.cna3.snp.filtered.vcf.gz | \
   awk -F'\t' 'BEGIN{OFS="\t"} {for(i=3;i<=6;i++){split($i,a,"|"); gt[a[1]]=a[2]; ad[a[1]]=a[3]}
@@ -82,12 +74,12 @@ Rscript association/a1_run.R
 Rscript association/a1_treat_sens.R
 
 # Summary tables (TSV -> tables/out/)
-for s in table1 table2 table_a1 tableS_cn76 tableS_methods tableS_pairs tableS_qc tableS_strains tableS_treat; do
+for s in table1 table2 table_a1; do
   Rscript tables/${s}.R
 done
 
 # Figures (PDF & PNG -> figures/out/)
-for s in fig1 fig2 fig3 figS_trees figS_misscheck; do
+for s in fig2 fig3 figS_trees; do
   Rscript figures/${s}.R
 done
 ```
