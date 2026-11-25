@@ -99,4 +99,4 @@ This workflow relies on open-source bioinformatics tools (including `fastp`, `bw
 
 ## License
 
-`<License>`
+This project is released under the [MIT License](LICENSE).
